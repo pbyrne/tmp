@@ -5,9 +5,7 @@ script, from_file, to_file = argv
 
 print "Copying from %s to %s" % (from_file, to_file)
 
-# we could do these two on one line too, how?
-input = open(from_file)
-indata = input.read()
+indata = open(from_file).read()
 
 print "The imnput file is %d bytes log" % len(indata)
 
@@ -21,4 +19,3 @@ output.write(indata)
 print "Alright, all done."
 
 output.close()
-input.close()
