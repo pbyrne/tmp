@@ -8,9 +8,9 @@ say "Starting script"
 
 # if fork
 #   sleep 2
-#   say "This should be from the parent"
+#   say "This is from the parent"
 # else
-#   say "This should be from the child"
+#   say "This is from the child"
 # end
 
 10.times do
@@ -20,8 +20,8 @@ say "Starting script"
   end
 end
 
-say "This prints while the children are running"
+say "This happens while the children are running"
 
 Process.waitall
 
-say "This prints only after all the children are done"
+say "This happens only after all the children are done"
