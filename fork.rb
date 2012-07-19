@@ -1,7 +1,7 @@
 def say message
   pid = Process.pid
   stamp = Time.now.strftime('%H:%M:%S.%L')
-  puts "PID #{pid} : #{stamp}: #{message}"
+  puts "PID #{pid} : #{stamp} : #{message}"
 end
 
 say "Starting script"
