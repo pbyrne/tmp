@@ -13,29 +13,23 @@ say "Starting script"
 #   say "This is from the child"
 # end
 
+servers = []
+
 10.times do
   fork do
     sleep rand * 2
-    say "This is from the child"
+    value = rand(100)
+    say "This is from the child. Random value of #{value} selected."
+    servers << value
+    say servers
   end
 end
 
 say "This happens while the children are running"
+say "The current servers list is: #{servers}"
 
 Process.waitall
 
 say "This happens only after all the children are done"
+say "The current servers list is: #{servers}"
 
-say "And now let's try some more forks, to see if Process.waitall can handle it"
-
-fork do
-  say "Doing something in the child process"
-  sleep 5
-  say "Done in the child"
-end
-
-say "Waiting, from the parent, for the new child"
-
-Process.waitall
-
-say "And now we're done altogether"
