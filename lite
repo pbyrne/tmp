@@ -1,0 +1,43 @@
+#!/bin/bash
+
+baseurl="http://10.1.3.251/litebrite/peggy/"
+
+function main() {
+  command=$1
+  shift
+  output=$*
+
+  case $command in
+  lease)
+    request_lease
+    ;;
+  print)
+    print output
+    ;;
+  *)
+    usage
+    ;;
+  esac
+}
+
+function request_lease() {
+  echo "Requesting lease"
+}
+
+function usage() {
+  echo "USAGE"
+  echo
+  echo "To get a lease:"
+  echo "  litebrite lease"
+  echo "To write to the board:"
+  echo "  LEASE=asdf litebrite print < output.txt"
+}
+
+# http://10.1.3.251/litebrite/peggy
+#
+# get_lease/:length (max of 10) returns the key
+# clear/:lease_code
+# write/:lease_code/:row/:col/:message
+# set_color/:lease_code/{green|red|orange}
+
+main $*
