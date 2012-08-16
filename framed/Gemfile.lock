@@ -20,5 +20,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  compass
   framed-scss!
