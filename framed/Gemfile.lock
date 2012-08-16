@@ -1,9 +1,10 @@
 GIT
-  remote: git://github.com/mrDarcyMurphy/framed-scss.git
-  revision: 092fc74b363c367428e32fd0b93fc36c75b32171
+  remote: git@github.com:tstmedia/sport_ngin_ui.git
+  revision: b96f00405ab16d8c1606064b9e0abdbdb608b7f0
   specs:
-    framed-scss (0.0.4)
-      compass (>= 0.12)
+    sport_ngin_ui (0.0.1)
+      compass
+      sass
 
 GEM
   remote: https://rubygems.org/
@@ -20,4 +21,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  framed-scss!
+  sport_ngin_ui!
