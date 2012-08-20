@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:tstmedia/sport_ngin_ui.git
-  revision: b96f00405ab16d8c1606064b9e0abdbdb608b7f0
+  revision: 9c60a12e8e1b986f2e3ba1bc0da0e0725c459555
   specs:
     sport_ngin_ui (0.0.1)
       compass
