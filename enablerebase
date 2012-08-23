@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Enables automatic rebase for each existing branch in your projects. This is
-# useful in conjunction with the 'branch.enablerebase always' option, which
-# enables this setting on new branches but leaves existing branches intact.
+# Enables automatic rebase when pulling for each existing branch in your
+# projects. This is useful in conjunction with the 'branch.enablerebase always'
+# option, which enables this setting on new branches but leaves existing
+# branches intact.
 #
 # Pass this a directory which contains all of your projects and it will enable
 # thie option for all existing local branches in each Git repo within it.
