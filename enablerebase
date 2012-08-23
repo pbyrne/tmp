@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Enables automatic rebase for each existing branch in your projects. This is
+# useful in conjunction with the 'branch.enablerebase always' option, which
+# enables this setting on new branches but leaves existing branches intact.
+#
+# Pass this a directory which contains all of your projects and it will enable
+# thie option for all existing local branches in each Git repo within it.
+
+function main() {
+  if [ -z $1 ]; then
+    # print usage if not passed a workspace
+    usage
+  else
+    enable_rebase_in_workspace $1
+  fi
+}
+
+function usage() {
+  echo
+  echo "enablerebase PROJECTS_WORKSPACE"
+  echo
+  echo "Loops through all git repos in PROJECTS_WORKSPACE and enables rebase on all local branches"
+  echo
+  echo "Ex:"
+  echo "enablerebase ~/workspace"
+}
+
+function enable_rebase_in_workspace() {
+  WORKSPACE=$1
+  echo working in $WORKSPACE
+  echo
+
+  ls $WORKSPACE | while read project; do
+    enable_rebase_in_project $project
+    echo
+  done
+}
+
+function enable_rebase_in_project() {
+  PROJECT=$1
+  echo working with $WORKSPACE/$PROJECT
+  cd $WORKSPACE/$PROJECT
+
+  if [ -d $WORKSPACE/$PROJECT/.git ]; then
+    local_branches | while read branch; do
+      enable_rebase_for_branch $branch
+    done
+  else
+    echo $PROJECT is not a git project, moving along
+  fi
+}
+
+function enable_rebase_for_branch() {
+  BRANCH=$1
+  echo looking at $BRANCH of $PROJECT
+  git config --local branch.$BRANCH.rebase true
+}
+
+
+function local_branches() {
+  # strip out the leading whitespace and "* " on current branch
+  git branch | cut -c 3-
+}
+
+main $*
