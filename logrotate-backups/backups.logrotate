@@ -1,4 +1,4 @@
-monthly/database.sql {
+monthly/database.sql.gz {
   monthly
   rotate 5
   dateext
@@ -7,7 +7,7 @@ monthly/database.sql {
   copytruncate
 }
 
-weekly/database.sql {
+weekly/database.sql.gz {
   weekly
   rotate 5
   dateext
@@ -16,7 +16,7 @@ weekly/database.sql {
   copytruncate
 }
 
-daily/database.sql {
+daily/database.sql.gz {
   daily
   rotate 7
   dateext
@@ -25,7 +25,7 @@ daily/database.sql {
   copytruncate
 }
 
-hourly/database.sql {
+hourly/database.sql.gz {
   hourly
   rotate 24
   dateext
