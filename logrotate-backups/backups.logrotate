@@ -1,0 +1,35 @@
+monthly/database.sql {
+  monthly
+  rotate 5
+  dateext
+  missingok
+  notifempty
+  copytruncate
+}
+
+weekly/database.sql {
+  weekly
+  rotate 5
+  dateext
+  missingok
+  notifempty
+  copytruncate
+}
+
+daily/database.sql {
+  daily
+  rotate 7
+  dateext
+  missingok
+  notifempty
+  copytruncate
+}
+
+hourly/database.sql {
+  hourly
+  rotate 24
+  dateext
+  missingok
+  notifempty
+  copytruncate
+}
