@@ -4,8 +4,8 @@ main() {
   count=$1
 
   if [ $count != "" ]; then
-    echo All
-    ls sample/ | sort --numeric-sort
+    # echo All
+    # ls sample/ | sort --numeric-sort
 
     echo All but the last $count
     ls sample/ | sort --numeric-sort | tail -n +$((count + 1))
