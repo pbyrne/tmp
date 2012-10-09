@@ -1,12 +1,12 @@
 #!/bin/bash
 
 main() {
-  echo compressing `some_output` to `outfile`
-  some_output | compress
+  echo "compressing result of '`output_command`' to `outfile`"
+  $(output_command) | compress
 }
 
-some_output() {
-  echo "foo!"
+output_command() {
+  echo "ls"
 }
 
 compress() {
