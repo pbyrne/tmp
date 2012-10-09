@@ -6,7 +6,7 @@ main() {
 }
 
 output_command() {
-  echo "ls"
+  echo ls
 }
 
 compress() {
@@ -14,7 +14,7 @@ compress() {
 }
 
 outfile() {
-  echo "filename.gz"
+  echo filename.gz
 }
 
 main $*
