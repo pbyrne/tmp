@@ -1,6 +1,8 @@
 #!/bin/bash
 
 FOO=foo
+user=theusername
+password=password
 
 echo The value of FOO is $FOO
 
@@ -12,3 +14,6 @@ source $(dirname $0)/source.sh
 
 echo "The value of FOO is now $FOO (expecting 'bar')"
 
+# Testing a function from the sourced script that directly references variables
+# from the parent script
+log_in
