@@ -1,31 +1,64 @@
-GEM
-  remote: https://rubygems.org/
+PATH
+  remote: .
   specs:
-    blankslate (2.1.2.4)
-    bluecloth (2.2.0)
-    gli (2.5.5)
-    json (1.7.7)
-    nokogiri (1.5.9)
-    parslet (1.5.0)
-      blankslate (~> 2.0)
-    rack (1.5.2)
-    rack-protection (1.5.0)
-      rack
     showoff (0.7.0)
-      bluecloth
-      gli (>= 1.3.2)
+      gli (~> 2)
       json
       nokogiri
       parslet
-      sinatra
+      redcarpet
+      sinatra (~> 1.3)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    Ascii85 (1.0.2)
+    afm (0.2.0)
+    ansi (1.4.3)
+    blankslate (2.1.2.4)
+    gli (2.5.5)
+    hashery (2.1.0)
+    json (1.7.7)
+    mg (0.0.8)
+      rake
+    nokogiri (1.5.9)
+    parslet (1.5.0)
+      blankslate (~> 2.0)
+    pdf-inspector (1.0.2)
+      pdf-reader (>= 0.9.0)
+    pdf-reader (1.3.2)
+      Ascii85 (~> 1.0.0)
+      afm (~> 0.2.0)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
+    pdfkit (0.5.3)
+    rack (1.5.2)
+    rack-protection (1.5.0)
+      rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    rake (10.0.4)
+    redcarpet (2.2.2)
+    rmagick (2.13.2)
+    ruby-rc4 (0.1.5)
     sinatra (1.4.2)
       rack (~> 1.5, >= 1.5.2)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
     tilt (1.3.6)
+    ttfunk (1.0.3)
+    turn (0.9.6)
+      ansi
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  showoff
+  mg
+  pdf-inspector
+  pdfkit
+  rack-test
+  rmagick
+  showoff!
+  turn
