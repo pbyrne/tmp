@@ -7,7 +7,40 @@ import (
 	"io/ioutil"
 	"os"
 	"os/user"
+	"time"
 )
+
+func main() {
+	cmd := "hostname"
+	username := os.Args[1]
+	hosts := os.Args[2:]
+	results := make(chan string, 10)
+	timeout := time.After(10 * time.Second)
+	key, err := getKeyFile()
+	panicIf(err)
+	config := &ssh.ClientConfig{
+		User: username,
+		Auth: []ssh.AuthMethod{
+			ssh.PublicKeys(key),
+		},
+	}
+
+	for _, hostname := range hosts {
+		go func(hostname string) {
+			results <- executeCmd(cmd, hostname, config)
+		}(hostname)
+	}
+
+	for _, _ = range hosts {
+		select {
+		case res := <-results:
+			fmt.Println(res)
+		case <-timeout:
+			fmt.Println("Timed out!")
+			return
+		}
+	}
+}
 
 func getKeyFile() (key ssh.Signer, err error) {
 	usr, _ := user.Current()
@@ -23,37 +56,22 @@ func getKeyFile() (key ssh.Signer, err error) {
 	return key, nil
 }
 
-func main() {
-	username := os.Args[1]
-	hosts := os.Args[2:]
-	cmd := "hostname"
-	key, err := getKeyFile()
+func panicIf(err error) {
 	if err != nil {
 		panic(err)
 	}
-	config := &ssh.ClientConfig{
-		User: username,
-		Auth: []ssh.AuthMethod{
-			ssh.PublicKeys(key),
-		},
-	}
+}
 
-	for _, host := range hosts {
-		client, err := ssh.Dial("tcp", host+":22", config)
-		if err != nil {
-			panic(err)
-		}
-		session, err := client.NewSession()
-		if err != nil {
-			panic(err)
-		}
-		defer session.Close()
-		var b bytes.Buffer
-		session.Stdout = &b
-		err = session.Run(cmd)
-		if err != nil {
-			panic(err)
-		}
-		fmt.Println(b.String())
-	}
+func executeCmd(cmd string, hostname string, config *ssh.ClientConfig) string {
+	con, err := ssh.Dial("tcp", hostname+":22", config)
+	panicIf(err)
+	session, err := con.NewSession()
+	panicIf(err)
+	defer session.Close()
+
+	var stdoutBuf bytes.Buffer
+	session.Stdout = &stdoutBuf
+	session.Run(cmd)
+
+	return hostname + ": " + stdoutBuf.String()
 }
