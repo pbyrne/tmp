@@ -5,12 +5,11 @@ import (
 )
 
 func main() {
-  ceiling := 10
+  ceiling := 1000
   sum := 0
 
   for i := 0; i < ceiling; i++ {
-    sum = sum + addIfMultiple(i)
-    fmt.Println("Current sum is", sum)
+    sum += addIfMultiple(i)
   }
 
   fmt.Println("\n\nTotal sum is", sum)
