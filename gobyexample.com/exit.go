@@ -4,7 +4,7 @@ import "fmt"
 import "os"
 
 func main() {
-  defer fmt.Println("!")
+	defer fmt.Println("!")
 
-  os.Exit(3)
+	os.Exit(3)
 }
