@@ -6,7 +6,7 @@ defmodule Issues.CLI do
   end up generating a table of the last _n_ issues in a GitHub project.
   """
 
-  def run(argv) do
+  def main(argv) do
     argv |> parse_args |> process
   end
 
@@ -37,7 +37,7 @@ defmodule Issues.CLI do
     System.halt(0)
   end
 
-  def process({user, project, _count}) do
+  def process({user, project, count}) do
     Issues.GitHubIssues.fetch(user, project)
     |> decode_response
     |> sort_into_ascending_order
