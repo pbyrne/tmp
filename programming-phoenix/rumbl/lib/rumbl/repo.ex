@@ -20,7 +20,7 @@ defmodule Rumbl.Repo do
     Enum.find all(module), fn map ->
       Enum.all?(params, fn {key, val} ->
         Map.get(map, key) == val
-      end
+      end)
     end
   end
 end
